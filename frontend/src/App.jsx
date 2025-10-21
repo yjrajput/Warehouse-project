@@ -7,6 +7,7 @@ import Orders from './pages/Orders'
 import Alerts from './pages/Alerts'
 import Warehouses from './pages/Warehouses'
 import Settings from './pages/Settings'
+import { InventoryProvider } from './contextAPI/InventoryContext'
 import { useState } from 'react'
 
 const App = () => {
@@ -39,9 +40,11 @@ const App = () => {
   }
   return (
     <>
-        <Sidebar currentPage = {currentPage} onNavigate = {setCurrentPage}>
-            {renderPage()}
-        </Sidebar>
+        <InventoryProvider>
+          <Sidebar currentPage = {currentPage} onNavigate = {setCurrentPage}>
+              {renderPage()}
+          </Sidebar>
+        </InventoryProvider>
     </>
   )
 }
