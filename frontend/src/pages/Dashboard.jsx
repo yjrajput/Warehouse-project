@@ -3,6 +3,7 @@ import StateCard from '../components/StateCard'
 import { useInventory } from '../contextAPI/InventoryContext'
 import { Package, AlertTriangle, ShoppingCart, TruckIcon } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
+import ActivityFeed from '../components/ActivityFeed';
 
 
 
@@ -37,6 +38,8 @@ const Dashboard = () => {
         }));
     };
 
+    const activeAlerts = alerts.filter((a) => a.status === "active");
+
     const activityTrend = getActivityTrend();
     return (
         <div className='space-y-6'>
@@ -63,7 +66,7 @@ const Dashboard = () => {
                 <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-6">
                     <div className="flex items-center justify-between">
                         <h2 className="text-lg font-semibold text-gray-800">📦 Current Stock Levels</h2>
-                        <span className="text-sm text-gray-400">Updated just now</span>
+
                     </div>
 
                     <div className="w-full h-[300px] sm:h-[350px] md:h-[400px]">
@@ -101,7 +104,7 @@ const Dashboard = () => {
                 <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-6">
                     <div className="flex items-center justify-between">
                         <h2 className="text-lg font-semibold text-gray-800">📈 Activity Trend (7 Days)</h2>
-                        <span className="text-sm text-gray-400">Last 7 days</span>
+
                     </div>
 
                     <div className="w-full h-[250px] sm:h-[300px] md:h-[350px]">
@@ -143,6 +146,51 @@ const Dashboard = () => {
                                 <span className="text-gray-600">Orders</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                <ActivityFeed />
+
+                <div className="p-6 bg-gradient-to-br from-white via-orange-50 to-orange-100 rounded-2xl shadow-md border border-orange-200 transition-all duration-300">
+                    {/* Header */}
+                    <div className="flex items-center gap-2 mb-4">
+                        <AlertTriangle className="h-5 w-5 text-orange-500" />
+                        <h2 className="text-lg font-semibold text-gray-800">Active Alerts</h2>
+                    </div>
+
+                    {/* Content */}
+                    <div className="space-y-3">
+                        {activeAlerts.length > 0 ? (
+                            activeAlerts.map((alert) => (
+                                <div
+                                    key={alert.id}
+                                    className="rounded-xl border border-orange-200 bg-white p-4 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 ease-in-out"
+                                >
+                                    <div className="flex items-start justify-between">
+                                        <div className="flex-1">
+                                            <p className="text-sm font-medium text-gray-900">
+                                                {alert.productName}
+                                            </p>
+                                            <p className="text-xs text-gray-600 mt-1">
+                                                Only <span className="font-semibold text-orange-600">{alert.quantity}</span> units left{" "}
+                                                <span className="text-gray-500">(threshold: {alert.threshold})</span>
+                                            </p>
+                                        </div>
+                                        <div className="ml-3 flex-shrink-0">
+                                            <span className="inline-flex items-center rounded-full bg-orange-100 px-2 py-1 text-xs font-semibold text-orange-800">
+                                                Low Stock
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-center text-sm text-gray-500 py-6">
+                                No active alerts
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>
