@@ -21,14 +21,14 @@ const Dashboard = () => {
     const shipmentsReceived = activities.filter(a => a.type === 'shipment').length;
     const ordersFulfilled = activities.filter(a => a.type === 'order').length;
 
-    // Chart data for stock levels
+    
     const chartData = filteredProducts.slice(0, 8).map(p => ({
         name: p.name.length > 10 ? p.name.substring(0, 10) + '...' : p.name,
         stock: p.quantity,
         threshold: p.reorderThreshold,
     }));
 
-    // Activity timeline data (last 7 days simulation)
+
     const getActivityTrend = () => {
         const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         return days.map((day, index) => ({
@@ -62,7 +62,7 @@ const Dashboard = () => {
 
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-                {/* ---- Current Stock Levels ---- */}
+                
                 <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-6">
                     <div className="flex items-center justify-between">
                         <h2 className="text-lg font-semibold text-gray-800">📦 Current Stock Levels</h2>
@@ -100,7 +100,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                {/* ---- Activity Trend (7 Days) ---- */}
+               
                 <div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col gap-6">
                     <div className="flex items-center justify-between">
                         <h2 className="text-lg font-semibold text-gray-800">📈 Activity Trend (7 Days)</h2>
@@ -155,13 +155,13 @@ const Dashboard = () => {
                 <ActivityFeed />
 
                 <div className="p-6 bg-gradient-to-br from-white via-orange-50 to-orange-100 rounded-2xl shadow-md border border-orange-200 transition-all duration-300">
-                    {/* Header */}
+                   
                     <div className="flex items-center gap-2 mb-4">
                         <AlertTriangle className="h-5 w-5 text-orange-500" />
                         <h2 className="text-lg font-semibold text-gray-800">Active Alerts</h2>
                     </div>
 
-                    {/* Content */}
+       
                     <div className="space-y-3">
                         {activeAlerts.length > 0 ? (
                             activeAlerts.map((alert) => (
