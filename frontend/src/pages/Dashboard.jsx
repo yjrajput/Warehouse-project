@@ -107,7 +107,7 @@ const Dashboard = () => {
 
                     </div>
 
-                    <div className="w-full h-[250px] sm:h-[300px] md:h-[350px]">
+                    <div className="w-full h-[300px] sm:h-[350px] md:h-[400px]">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={activityTrend}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
@@ -136,7 +136,9 @@ const Dashboard = () => {
                                 />
                             </LineChart>
                         </ResponsiveContainer>
-                        <div className="mt-4 flex items-center justify-center gap-6 text-sm">
+                        
+                    </div>
+                    <div className="mt-4 flex items-center justify-center gap-6 text-sm">
                             <div className="flex items-center gap-2">
                                 <div className="h-3 w-3 rounded-full bg-green-500" />
                                 <span className="text-gray-600">Shipments</span>
@@ -146,7 +148,6 @@ const Dashboard = () => {
                                 <span className="text-gray-600">Orders</span>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
 
