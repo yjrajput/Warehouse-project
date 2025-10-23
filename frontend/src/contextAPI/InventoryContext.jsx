@@ -24,9 +24,9 @@ const initialProducts = [
 
 const warehouses = [
   { id: "all", name: "All Warehouses", location: "All Locations" },
-  { id: "wh1", name: "Warehouse A", location: "New York, NY" },
-  { id: "wh2", name: "Warehouse B", location: "Los Angeles, CA" },
-  { id: "wh3", name: "Warehouse C", location: "Chicago, IL" },
+  { id: "wh1", name: "Warehouse A", location: "Khargone" },
+  { id: "wh2", name: "Warehouse B", location: "kasrawad" },
+  { id: "wh3", name: "Warehouse C", location: "Borawan" },
 ];
 
 export const InventoryProvider = ({ children }) => {
